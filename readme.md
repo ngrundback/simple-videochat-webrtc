@@ -10,3 +10,8 @@ Start - npm start
 For development run watchify - npm run watch  
 
 Open localhost in two browser tabs.
+
+
+
+# Tutorial
+https://www.youtube.com/watch?v=KLCcCTFivhM
