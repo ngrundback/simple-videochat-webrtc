@@ -22,7 +22,23 @@ navigator.mediaDevices.getUserMedia({ video: true, audio: true })
 
         //used to initialize a peer
         function InitPeer(type) {
-            let peer = new Peer({ initiator: (type == 'init') ? true : false, stream: stream, trickle: false })
+            //let peer = new Peer({ initiator: (type == 'init') ? true : false, stream: stream, trickle: false })
+            let peer = new Peer({
+                initiator: (type == 'init') ? true : false,
+                channelConfig: {},
+                channelName: 'chat',
+                config: { iceServers: [{ urls: 'stun:stun.l.google.com:19302' }, { urls: 'stun:global.stun.twilio.com:3478?transport=udp' }] },
+                offerOptions: {},
+                answerOptions: {},
+                sdpTransform: function (sdp) { return sdp },
+                stream: stream,
+                streams: [],
+                trickle: true,
+                allowHalfTrickle: false,
+                wrtc: {}, // RTCPeerConnection/RTCSessionDescription/RTCIceCandidate
+                objectMode: false
+            });
+
             peer.on('stream', function (stream) {
                 CreateVideo(stream)
             })
