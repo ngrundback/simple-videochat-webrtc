@@ -115,8 +115,12 @@ navigator.mediaDevices.getUserMedia({ video: true, audio: true })
         }
 
         function RemovePeer() {
-            document.getElementById("peerVideo").remove();
-            document.getElementById("muteText").remove();
+            let peerVideo = document.getElementById("peerVideo");
+            if(peerVideo != null)
+                peerVideo.remove();
+            let muteText = document.getElementById("muteText");
+            if(muteText != null)
+                muteText.remove();
             if (client.peer) {
                 client.peer.destroy()
             }
